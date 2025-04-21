@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-R - Pakistan Customs Automation Solutions</title>
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #0066cc;
+            --accent: #ff9900;
+            --light: #f5f8fa;
+            --dark: #333;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .developers {
+            background-color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .dev-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .dev-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: var(--light);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .dev-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 3px solid var(--secondary);
+        }
+        
+        .dev-name {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .dev-role {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .dev-contact {
+            font-weight: bold;
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+        
+        .about-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .expertise-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .expertise-item {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        
+        .solution-box {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-icon {
+            background-color: var(--accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-weight: bold;
+        }
+        
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .pricing-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-price {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-details {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pricing-details li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .pricing-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .pricing-button:hover {
+            background-color: #e68a00;
+        }
+        
+        .client-list {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .client-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .client-category {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .client-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .clients {
+            list-style: none;
+        }
+        
+        .clients li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .impact-item {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .impact-percentage {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tech-list {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .tech-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-person {
+            flex: 1;
+            min-width: 250px;
+            max-width: 400px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .contact-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .copyright {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .pricing-container,
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Web-R</div>
+            <div class="tagline">Pakistan Customs Automation Solutions</div>
+            <p>Streamlining Export Documentation Since 2020</p>
+        </div>
+    </header>
+    
+    <section class="developers">
+        <div class="container">
+            <h2 class="section-title">Development Team</h2>
+            <div class="dev-container">
+                <div class="dev-card">
+                    <img src="owner.jpg" alt="Rizwan Ahmed" class="dev-photo" >
+                    <h3 class="dev-name">Rizwan Ahmed</h3>
+                    <p class="dev-role">Lead Developer</p>
+                    <p class="dev-contact">Contact: 03456069257</p>
+                </div>
+                <div class="dev-card">
+                    <img src="logo.webp" alt="Arbab Irfan" class="dev-photo">
+                    <h3 class="dev-name">Arbab Irfan</h3>
+                    <p class="dev-role">Senior Developer</p>
+                    <p class="dev-contact">Contact: 0332-3079114</p>
+                </div>
+                <div class="dev-card">
+                    <img src="logo.webp" alt="Web Developer" class="dev-photo">
+                    <h3 class="dev-name">Arham Shahid</h3>
+                    <p class="dev-role">HTML Specialist & Automation Trainer</p>
+                    <p>Specializing in front-end development and currently learning automation techniques</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <p>We are a specialized software development team focusing on automation solutions for Pakistan Customs export tasks. We've developed innovative software that significantly streamlines the export documentation process on Weboc.pk.com and Pakistan Single Window Portal, saving exporters valuable time and reducing errors in documentation.</p>
+                <p>Since 2020, our Web-R software has been helping exporters and export agencies across Pakistan automate their customs documentation processes.</p>
+                
+                <h3 style="margin-top: 2rem; color: var(--secondary);">Our Expertise</h3>
+                <div class="expertise-list">
+                    <span class="expertise-item">Custom Software Development</span>
+                    <span class="expertise-item">Process Automation</span>
+                    <span class="expertise-item">Data Extraction & Processing</span>
+                    <span class="expertise-item">Export Documentation Solutions</span>
+                    <span class="expertise-item">Web Automation</span>
+                    <span class="expertise-item">Document Verification & Validation</span>
+                    <span class="expertise-item">Front-end Development</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2 class="section-title">Core Solution</h2>
+            <div class="solution-box">
+                <p>Our flagship automation software Web-R addresses a critical pain point for Pakistani exporters who previously had to manually complete numerous entries on Weboc.pk.com. This tedious process was prone to errors and extremely time-consuming. Our solution automates these tasks, dramatically improving efficiency and accuracy.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2 class="section-title">Software Features</h2>
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-title">
+                        <div class="feature-icon">1</div>
+                        Automatic Login to Weboc.gov.pk
+                    </div>
+                    <p>Secure credential management with encrypted authentication</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-title">
+                        <div class="feature-icon">2</div>
+                        Automated Entry Posting
+                    </div>
+                    <p>Seamless data submission to both Weboc.gov.pk and Pakistan Single Window Portal</p>
+                    <p>Eliminates manual data entry errors</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-title">
+                        <div class="feature-icon">3</div>
+                        Custom Item Creation
+                    </div>
+                    <p>Dynamically generates items according to client specifications</p>
+                    <p>Handles complex product classifications</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-title">
+                        <div class="feature-icon">4</div>
+                        Data Extraction & Reporting
+                    </div>
+                    <p>Date-wise extraction of shipping bill data to Excel</p>
+                    <p>Automated extraction from multiple websites for container status tracking</p>
+                    <p>Month-wise GD (Goods Declaration) extraction</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-title">
+                        <div class="feature-icon">5</div>
+                        GD Resolution System
+                    </div>
+                    <p>Quick-view functionality to check saved GD positions</p>
+                    <p>Progress tracking and status monitoring</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-title">
+                        <div class="feature-icon">6</div>
+                        Multi-format Compatibility
+                    </div>
+                    <p>Seamless handling of PDF, Excel, and RTF formats</p>
+                    <p>Document conversion capabilities</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-title">
+                        <div class="feature-icon">7</div>
+                        Export Document Verification
+                    </div>
+                    <p>Automated cross-checking between Weboc data and invoice data</p>
+                    <p>Detailed comparison of key fields including consignee information, shipping details, and values</p>
+                    <p>Status reporting with "OK" confirmations for matching data</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2 class="section-title">Pricing Structure</h2>
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Base Software Package</h3>
+                    <div class="pricing-price">PKR 100,000</div>
+                    <ul class="pricing-details">
+                        <li>Core Web-R Automation Software</li>
+                        <li>6-Month License Validity</li>
+                        <li>Basic Setup Support</li>
+                        <li>Standard Documentation</li>
+                    </ul>
+                    <button class="pricing-button">Contact Us</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Additional Services</h3>
+                    <ul class="pricing-details">
+                        <li>Custom Bond Document Processing: <strong>PKR 15,000</strong> per client</li>
+                        <li>Custom Item Documentation: <strong>PKR 15,000</strong> per client</li>
+                        <li>Extended Support Available</li>
+                        <li>Custom Integration Services</li>
+                    </ul>
+                    <button class="pricing-button">Get Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2 class="section-title">Client Portfolio</h2>
+            <div class="client-list">
+                <p>We currently provide automation solutions to 19 export agencies and direct exporters:</p>
+                
+                <div class="client-categories">
+                    <div class="client-category">
+                        <h3>Export Agencies</h3>
+                        <ul class="clients">
+                            <li>Target Agencies</li>
+                            <li>ZUA International</li>
+                            <li>Specious</li>
+                            <li>Marfani Brother</li>
+                            <li>Choudhary Trading Corporation</li>
+                            <li>BARI International</li>
+                            <li>Cargo Linker</li>
+                            <li>Javid Esani</li>
+                            <li>SA-REHMAT</li>
+                            <li>Sidq Enterprises</li>
+                            <li>Masood Enterprises</li>
+                            <li>Haq Traders</li>
+                            <li>Waseem Brothers</li>
+                            <li>Khan Enterprises</li>
+                            <li>MAGNET OF BUSINESS INTERNATIONAL</li>
+                            <li>SMS Enterprises</li>
+                            <li>Arshad Brother</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="client-category">
+                        <h3>Direct Exporters</h3>
+                        <ul class="clients">
+                            <li>Mavic Sports</li>
+                            <li>Artistic Apparel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <h2 class="section-title">Business Impact</h2>
+            <p>Our Web-R automation solution has delivered significant benefits to clients:</p>
+            
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-percentage">85%</div>
+                    <p>Reduction in documentation processing time</p>
+                </div>
+                
+                <div class="impact-item">
+                    <div class="impact-percentage">90%</div>
+                    <p>Decrease in documentation errors</p>
+                </div>
+                
+                <div class="impact-item">
+                    <div class="impact-percentage">100%</div>
+                    <p>Data integrity between customs declarations and commercial invoices</p>
+                </div>
+                
+                <div class="impact-item">
+                    <div class="impact-percentage">↑</div>
+                    <p>Increased productivity with existing staff</p>
+                </div>
+            </div>
+            
+            <div class="tech-list">
+                <h3 style="color: var(--secondary); margin-bottom: 1.5rem;">Technical Highlights</h3>
+                
+                <div class="tech-item">
+                    <div class="tech-title">Precision Matching</div>
+                    <p>The software performs exact checking between Weboc data and invoice data, ensuring quantities match precisely to avoid customs discrepancies</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-title">Format Standardization</div>
+                    <p>Automatically handles different formatting styles (e.g., "6.15327 MT" vs "6,153.27")</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-title">Audit Trail</div>
+                    <p>Each verification includes timestamp, user identification, and computer identification for compliance and accountability</p>
+                </div>
+                
+                <div class="tech-item">
+                    <div class="tech-title">Visual Status Indicators</div>
+                    <p>Clear "OK" status markers for quick identification of matching fields</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h2 style="margin-bottom: 2rem;">Contact Information</h2>
+            
+            <div class="contact-info">
+                <div class="contact-person">
+                    <div class="contact-name">Rizwan Ahmed</div>
+                    <p>Lead Developer</p>
+                    <p>Phone: 03456069257</p>
+                </div>
+                
+                <div class="contact-person">
+                    <div class="contact-name">Arbab Irfan</div>
+                    <p>Senior Developer</p>
+                    <p>Phone: 0332-3079114</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>Web-R - Pakistan Customs Automation Solutions</p>
+                <p>Streamlining Export Documentation Since 2020</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
