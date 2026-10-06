@@ -1,649 +1,1100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web-R - Pakistan Customs Automation Solutions</title>
+    <title>WEB-R TECH | Custom Robotic Process Automation & Trade Portal Systems</title>
+    <meta name="description" content="Eliminating manual data entry bottlenecks. Automated PDF/Excel extraction, calculations, and 1-click WeBOC & PSW portal submissions with zero human error.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brandRed: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                        },
+                        charcoal: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            600: '#475569',
+                            500: '#64748b',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                        'card-hover': '0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.04)',
+                        'red-glow': '0 4px 20px -2px rgba(220, 38, 38, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        :root {
-            --primary: #003366;
-            --secondary: #0066cc;
-            --accent: #ff9900;
-            --light: #f5f8fa;
-            --dark: #333;
-            --success: #28a745;
+        /* Subtle corporate background grid */
+        .bg-grid-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 24px 24px;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* Custom range slider styling with Brand Red accent */
+        input[type="range"] {
+            accent-color: #dc2626;
         }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
+
+        /* Clean scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        ::-webkit-scrollbar-track {
+            background: #f8fafc;
         }
-        
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
         }
-        
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .developers {
-            background-color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .dev-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-        
-        .dev-card {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
-            text-align: center;
-            padding: 1.5rem;
-            border-radius: 8px;
-            background-color: var(--light);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .dev-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 3px solid var(--secondary);
-        }
-        
-        .dev-name {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-        
-        .dev-role {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .dev-contact {
-            font-weight: bold;
-        }
-        
-        section {
-            padding: 3rem 0;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent);
-        }
-        
-        .about-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .expertise-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-        
-        .expertise-item {
-            background-color: var(--secondary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            font-weight: 500;
-        }
-        
-        .solution-box {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .features-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .feature-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .feature-title {
-            font-size: 1.25rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-        
-        .feature-icon {
-            background-color: var(--accent);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-weight: bold;
-        }
-        
-        .pricing-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .pricing-card {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .pricing-title {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-        
-        .pricing-price {
-            font-size: 2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .pricing-details {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .pricing-details li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .pricing-button {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .pricing-button:hover {
-            background-color: #e68a00;
-        }
-        
-        .client-list {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .client-categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-        
-        .client-category {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .client-category h3 {
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .clients {
-            list-style: none;
-        }
-        
-        .clients li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .impact-item {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .impact-percentage {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-        
-        .tech-list {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            margin-top: 2rem;
-        }
-        
-        .tech-item {
-            margin-bottom: 1.5rem;
-        }
-        
-        .tech-title {
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        footer {
-            background-color: var(--primary);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-            margin-top: 3rem;
-        }
-        
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .contact-person {
-            flex: 1;
-            min-width: 250px;
-            max-width: 400px;
-            background-color: rgba(255,255,255,0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-        }
-        
-        .contact-name {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .copyright {
-            opacity: 0.8;
-            font-size: 0.9rem;
-            margin-top: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.75rem;
-            }
-            
-            .pricing-container,
-            .impact-grid {
-                grid-template-columns: 1fr;
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626;
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <div class="logo">Web-R</div>
-            <div class="tagline">Pakistan Customs Automation Solutions</div>
-            <p>Streamlining Export Documentation Since 2020</p>
+<body class="bg-white text-charcoal-800 font-sans antialiased selection:bg-brandRed-600 selection:text-white relative">
+
+    <!-- Top Notification Bar -->
+    <div class="bg-charcoal-900 text-white text-xs sm:text-sm py-2.5 px-4 border-b border-charcoal-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-brandRed-600 text-white">LIVE</span>
+                <span class="text-slate-300">Powering WeBOC & Pakistan Single Window (PSW) 1-Click Automations for 22+ Top Exporters.</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-mono">
+                <a href="#calculator" class="text-brandRed-500 hover:text-white transition font-semibold underline">Calculate Your Hours Saved →</a>
+                <span class="hidden md:inline text-slate-500">|</span>
+                <a href="tel:03456069257" class="hidden md:inline text-slate-300 hover:text-white">Direct Desk: 0345-6069257</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Corporate Navbar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Brand Logo: Red "WEB", Charcoal "R" & "TECH" -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <img src="logo.webp" alt="WEB-R TECH Official Logo" class="h-11 w-11 object-contain rounded-lg border border-slate-200 p-1 bg-white shadow-sm group-hover:border-brandRed-500 transition">
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black tracking-tight text-charcoal-900 leading-none">
+                            <span class="text-brandRed-600">WEB</span><span class="text-charcoal-900">-R</span> <span class="text-charcoal-700 text-xl font-bold">TECH</span>
+                        </span>
+                        <span class="text-[10px] font-mono uppercase tracking-widest text-slate-500 mt-1">Robotic Process Automation</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="#services" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Services</a>
+                    <a href="#calculator" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Time Calculator</a>
+                    <a href="#tutorials" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition flex items-center gap-1.5">
+                        <span class="inline-block w-2 h-2 rounded-full bg-brandRed-600 animate-pulse"></span>
+                        Video Support Hub
+                    </a>
+                    <a href="#clients" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Clients</a>
+                    <a href="#team" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Team</a>
+                    <a href="#contact" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Contact</a>
+                </nav>
+
+                <!-- Right Action Button: Crimson Red Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://wa.me/923456069257?text=Hello%20WEB-R%20TECH%20Team%2C%20I%20am%20interested%20in%20automating%20our%20export%20and%20customs%20workflow." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white text-sm font-bold shadow-red-glow hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        <span>WhatsApp Support</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden">
+                    <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-100 focus:outline-none" aria-label="Toggle Navigation">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden px-4 pt-2 pb-6 space-y-2 bg-white border-b border-slate-200 shadow-xl">
+            <a href="#services" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100 hover:text-brandRed-600">Services & Capabilities</a>
+            <a href="#calculator" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100 hover:text-brandRed-600">Time-Saved Calculator</a>
+            <a href="#tutorials" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100 hover:text-brandRed-600">Video Support Hub</a>
+            <a href="#clients" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100 hover:text-brandRed-600">Clients</a>
+            <a href="#team" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100 hover:text-brandRed-600">Leadership Team</a>
+            <a href="#contact" class="mobile-link block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100 hover:text-brandRed-600">Contact Us</a>
+            <div class="pt-3">
+                <a href="https://wa.me/923456069257?text=Hello%20WEB-R%20TECH%2C%20I%20need%20automation%20support." target="_blank" rel="noopener noreferrer" class="w-full text-center flex items-center justify-center gap-2 py-3 rounded-xl bg-brandRed-600 text-white font-bold shadow-md">
+                    <span>Chat on WhatsApp (0345-6069257)</span>
+                </a>
+            </div>
         </div>
     </header>
-    
-    <section class="developers">
-        <div class="container">
-            <h2 class="section-title">Development Team</h2>
-            <div class="dev-container">
-                <div class="dev-card">
-                    <img src="owner.jpg" alt="Rizwan Ahmed" class="dev-photo" >
-                    <h3 class="dev-name">Rizwan Ahmed</h3>
-                    <p class="dev-role">Lead Developer</p>
-                    <p class="dev-contact">Contact: 03456069257</p>
-                </div>
-                <div class="dev-card">
-                    <img src="logo.webp" alt="Arbab Irfan" class="dev-photo">
-                    <h3 class="dev-name">Arbab Irfan</h3>
-                    <p class="dev-role">Senior Developer</p>
-                    <p class="dev-contact">Contact: 0332-3079114</p>
-                </div>
-                <div class="dev-card">
-                    <img src="logo.webp" alt="Web Developer" class="dev-photo">
-                    <h3 class="dev-name">Arham Shahid</h3>
-                    <p class="dev-role">HTML Specialist & Automation Trainer</p>
-                    <p>Specializing in front-end development and currently learning automation techniques</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <p>We are a specialized software development team focusing on automation solutions for Pakistan Customs export tasks. We've developed innovative software that significantly streamlines the export documentation process on Weboc.pk.com and Pakistan Single Window Portal, saving exporters valuable time and reducing errors in documentation.</p>
-                <p>Since 2020, our Web-R software has been helping exporters and export agencies across Pakistan automate their customs documentation processes.</p>
-                
-                <h3 style="margin-top: 2rem; color: var(--secondary);">Our Expertise</h3>
-                <div class="expertise-list">
-                    <span class="expertise-item">Custom Software Development</span>
-                    <span class="expertise-item">Process Automation</span>
-                    <span class="expertise-item">Data Extraction & Processing</span>
-                    <span class="expertise-item">Export Documentation Solutions</span>
-                    <span class="expertise-item">Web Automation</span>
-                    <span class="expertise-item">Document Verification & Validation</span>
-                    <span class="expertise-item">Front-end Development</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2 class="section-title">Core Solution</h2>
-            <div class="solution-box">
-                <p>Our flagship automation software Web-R addresses a critical pain point for Pakistani exporters who previously had to manually complete numerous entries on Weboc.pk.com. This tedious process was prone to errors and extremely time-consuming. Our solution automates these tasks, dramatically improving efficiency and accuracy.</p>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2 class="section-title">Software Features</h2>
-            <div class="features-container">
-                <div class="feature-card">
-                    <div class="feature-title">
-                        <div class="feature-icon">1</div>
-                        Automatic Login to Weboc.gov.pk
-                    </div>
-                    <p>Secure credential management with encrypted authentication</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-title">
-                        <div class="feature-icon">2</div>
-                        Automated Entry Posting
-                    </div>
-                    <p>Seamless data submission to both Weboc.gov.pk and Pakistan Single Window Portal</p>
-                    <p>Eliminates manual data entry errors</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-title">
-                        <div class="feature-icon">3</div>
-                        Custom Item Creation
-                    </div>
-                    <p>Dynamically generates items according to client specifications</p>
-                    <p>Handles complex product classifications</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-title">
-                        <div class="feature-icon">4</div>
-                        Data Extraction & Reporting
-                    </div>
-                    <p>Date-wise extraction of shipping bill data to Excel</p>
-                    <p>Automated extraction from multiple websites for container status tracking</p>
-                    <p>Month-wise GD (Goods Declaration) extraction</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-title">
-                        <div class="feature-icon">5</div>
-                        GD Resolution System
-                    </div>
-                    <p>Quick-view functionality to check saved GD positions</p>
-                    <p>Progress tracking and status monitoring</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-title">
-                        <div class="feature-icon">6</div>
-                        Multi-format Compatibility
-                    </div>
-                    <p>Seamless handling of PDF, Excel, and RTF formats</p>
-                    <p>Document conversion capabilities</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-title">
-                        <div class="feature-icon">7</div>
-                        Export Document Verification
-                    </div>
-                    <p>Automated cross-checking between Weboc data and invoice data</p>
-                    <p>Detailed comparison of key fields including consignee information, shipping details, and values</p>
-                    <p>Status reporting with "OK" confirmations for matching data</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2 class="section-title">Pricing Structure</h2>
-            <div class="pricing-container">
-                <div class="pricing-card">
-                    <h3 class="pricing-title">Base Software Package</h3>
-                    <div class="pricing-price">PKR 100,000</div>
-                    <ul class="pricing-details">
-                        <li>Core Web-R Automation Software</li>
-                        <li>6-Month License Validity</li>
-                        <li>Basic Setup Support</li>
-                        <li>Standard Documentation</li>
-                    </ul>
-                    <button class="pricing-button">Contact Us</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <h3 class="pricing-title">Additional Services</h3>
-                    <ul class="pricing-details">
-                        <li>Custom Bond Document Processing: <strong>PKR 25,000</strong> per client</li>
-                        <li>Custom Item Documentation: <strong>PKR 25,000</strong> per client</li>
-                        <li>Extended Support Available</li>
-                        <li>Custom Integration Services</li>
-                    </ul>
-                    <button class="pricing-button">Get Quote</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2 class="section-title">Client Portfolio</h2>
-            <div class="client-list">
-                <p>We currently provide automation solutions to 19 export agencies and direct exporters:</p>
-                
-                <div class="client-categories">
-                    <div class="client-category">
-                        <h3>Export Agencies</h3>
-                        <ul class="clients">
-                            <li>Target Agencies</li>
-                            <li>ZUA International</li>
-                            <li>Specious</li>
-                            <li>Marfani Brother</li>
-                            <li>Choudhary Trading Corporation</li>
-                            <li>BARI International</li>
-                            <li>Cargo Linker</li>
-                            <li>Javid Esani</li>
-                            <li>SA-REHMAT</li>
-                            <li>Sidq Enterprises</li>
-                            <li>Masood Enterprises</li>
-                            <li>Haq Traders</li>
-                            <li>Waseem Brothers</li>
-                            <li>Khan Enterprises</li>
-                            <li>MAGNET OF BUSINESS INTERNATIONAL</li>
-                            <li>SMS Enterprises</li>
-                            <li>Arshad Brother</li>
-                            <li>Prime Cargo</li>
-                            <li>Expiditor</li>
-                        </ul>
-                    </div>
+
+    <main>
+        <!-- HERO SECTION (Clean Light Theme with Brand Accents) -->
+        <section class="relative bg-gradient-to-b from-white via-slate-50 to-slate-100/60 pt-16 pb-20 md:pt-24 md:pb-32 border-b border-slate-200 overflow-hidden bg-grid-pattern">
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-4xl mx-auto">
                     
-                    <div class="client-category">
-                        <h3>Direct Exporters</h3>
-                        <ul class="clients">
-                            <li>Mavic Sports</li>
-                            <li>Artistic Apparel</li>
-                            <li>Artistic Garments (AGI)</li>
-                        </ul>
+                    <!-- Pill Badge -->
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brandRed-50 border border-brandRed-100 text-brandRed-700 text-xs sm:text-sm font-bold mb-6 shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-brandRed-600 animate-ping"></span>
+                        <span>Custom RPA & Desktop Automation</span>
+                    </div>
+
+                    <!-- Compelling Headline (incorporating requested Urdu/English phrasing) -->
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-charcoal-900 leading-tight mb-6">
+                        Manual Work Par Ghanton Barbaad Karna Chhodein — <br class="hidden sm:inline">
+                        <span class="text-brandRed-600">Automation In Seconds.</span>
+                    </h1>
+
+                    <!-- Clear Subtitle -->
+                    <p class="text-base sm:text-xl text-charcoal-600 font-normal leading-relaxed mb-10 max-w-3xl mx-auto">
+                        Eliminating manual data entry bottlenecks forever. We auto-extract unstructured data from messy PDFs and raw Excels, execute error-free calculations, and complete <strong class="text-charcoal-900 font-bold">1-click automated submissions</strong> directly into <strong class="text-brandRed-600 font-bold">WeBOC</strong> and <strong class="text-brandRed-600 font-bold">Pakistan Single Window (PSW)</strong> portals with 100% precision.
+                    </p>
+
+                    <!-- Dual CTAs: Red Filled + Charcoal Outline -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 mb-14">
+                        <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white font-extrabold text-base shadow-red-glow hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>Time Saved Calculator</span>
+                        </a>
+
+                        <a href="#tutorials" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white hover:bg-slate-50 text-charcoal-900 hover:text-brandRed-600 font-bold text-base border-2 border-charcoal-800 hover:border-brandRed-600 transition-all flex items-center justify-center gap-2 shadow-sm">
+                            <svg class="w-5 h-5 text-brandRed-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 21c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 3c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/>
+                            </svg>
+                            <span>Watch Video Guides</span>
+                        </a>
+
+                        <a href="https://wa.me/923456069257?text=Hi%20Rizwan%2C%20I%20want%20to%20see%20a%20live%20demo%20of%20Web-R%20automation." target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-6 py-4 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-white font-bold text-base transition-all flex items-center justify-center gap-2 shadow-md">
+                            <span>Request Live Demo</span>
+                        </a>
+                    </div>
+
+                    <!-- Clean Corporate Trust Stats Bar -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 bg-white rounded-2xl border border-slate-200 shadow-soft text-left">
+                        <div class="border-l-4 border-brandRed-600 pl-4">
+                            <div class="text-2xl sm:text-3xl font-black text-charcoal-900">22+</div>
+                            <div class="text-xs sm:text-sm text-charcoal-600 font-medium">Exporters & Agencies</div>
+                        </div>
+                        <div class="border-l-4 border-charcoal-800 pl-4">
+                            <div class="text-2xl sm:text-3xl font-black text-charcoal-900">85-98%</div>
+                            <div class="text-xs sm:text-sm text-charcoal-600 font-medium">Hours Saved on Data Entry</div>
+                        </div>
+                        <div class="border-l-4 border-brandRed-600 pl-4">
+                            <div class="text-2xl sm:text-3xl font-black text-charcoal-900">100%</div>
+                            <div class="text-xs sm:text-sm text-charcoal-600 font-medium">Data Accuracy & Verification</div>
+                        </div>
+                        <div class="border-l-4 border-charcoal-800 pl-4">
+                            <div class="text-2xl sm:text-3xl font-black text-charcoal-900">1-Click</div>
+                            <div class="text-xs sm:text-sm text-charcoal-600 font-medium">WeBOC & PSW Auto-Post</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Clean Corporate Software UI Simulation (Light Frame) -->
+                <div class="mt-14 max-w-5xl mx-auto rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-xl">
+                    <!-- Title Bar -->
+                    <div class="bg-charcoal-900 px-4 py-3 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-brandRed-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                            <span class="text-xs font-mono text-slate-300 ml-2 font-medium">WEB-R Enterprise Engine • High-Speed Desktop Automation</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-xs font-mono text-brandRed-100 bg-brandRed-600/30 px-3 py-1 rounded-full border border-brandRed-500/40">
+                            <span class="w-2 h-2 rounded-full bg-brandRed-500 animate-pulse"></span>
+                            <span>Portal Synchronization Online</span>
+                        </div>
+                    </div>
+
+                    <!-- Clean 3-Stage Workflow Interface -->
+                    <div class="p-6 md:p-8 bg-slate-50/70 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Step 1: Input</span>
+                                <span class="text-xs bg-brandRed-50 text-brandRed-700 font-mono font-bold px-2 py-0.5 rounded border border-brandRed-100">PDF / Excel</span>
+                            </div>
+                            <div class="text-sm font-bold text-charcoal-900 mb-1">Smart Document Parsing</div>
+                            <p class="text-xs text-charcoal-600 mb-4 leading-relaxed">Reads messy commercial invoices and packing lists. Tabularizes all line-items automatically.</p>
+                            <div class="text-xs font-mono bg-slate-100 p-2.5 rounded border border-slate-200 text-charcoal-800 space-y-1">
+                                <div class="text-emerald-700 font-semibold">✔ 48 Items Extracted</div>
+                                <div class="text-emerald-700 font-semibold">✔ HS Code Validation: OK</div>
+                                <div class="text-brandRed-600 font-semibold">✔ Formatted to Clean Excel</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Step 2: Logic</span>
+                                <span class="text-xs bg-slate-100 text-charcoal-800 font-mono font-bold px-2 py-0.5 rounded border border-slate-200">Engine Check</span>
+                            </div>
+                            <div class="text-sm font-bold text-charcoal-900 mb-1">Automated Reconciliation</div>
+                            <p class="text-xs text-charcoal-600 mb-4 leading-relaxed">Cross-verifies consignee names, quantities, currency values, and customs rates with zero tolerance for clerical error.</p>
+                            <div class="text-xs font-mono bg-slate-100 p-2.5 rounded border border-slate-200 text-charcoal-800 space-y-1">
+                                <div class="text-emerald-700 font-semibold">✔ Weight Standardized (MT)</div>
+                                <div class="text-emerald-700 font-semibold">✔ Consignee Data Matched</div>
+                                <div class="text-charcoal-900 font-semibold">✔ 0 Discrepancies Found</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Step 3: Output</span>
+                                <span class="text-xs bg-brandRed-600 text-white font-mono font-bold px-2 py-0.5 rounded">1-Click</span>
+                            </div>
+                            <div class="text-sm font-bold text-charcoal-900 mb-1">WeBOC & PSW Injection</div>
+                            <p class="text-xs text-charcoal-600 mb-4 leading-relaxed">Automatically types and posts every entry directly into the government portal via direct browser protocol.</p>
+                            <div class="text-xs font-mono bg-slate-100 p-2.5 rounded border border-slate-200 text-charcoal-800 space-y-1">
+                                <div class="text-emerald-700 font-semibold">✔ WeBOC Auth: Connected</div>
+                                <div class="text-emerald-700 font-semibold">✔ PSW GD Posted: OK</div>
+                                <div class="text-brandRed-600 font-bold">⏱ Duration: 4.8 Seconds</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CREDIBILITY & UNDER-THE-HOOD TECH STACK (Light Corporate Bar) -->
+        <section class="border-y border-slate-200 bg-white py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-6">
+                    <span class="text-xs font-mono text-brandRed-600 uppercase tracking-widest font-bold">Battle-Tested Architecture</span>
+                    <h3 class="text-xl font-extrabold text-charcoal-900 mt-1">High-Speed Technology Stack Under The Hood</h3>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-4 text-center">
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center">
+                        <span class="font-mono text-sm font-bold text-brandRed-600">AutoHotkey v2</span>
+                        <span class="text-xs text-charcoal-600 mt-1 font-medium">Native Windows Speed</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center">
+                        <span class="font-mono text-sm font-bold text-charcoal-900">MS WebView2</span>
+                        <span class="text-xs text-charcoal-600 mt-1 font-medium">Chromium UI Engine</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center">
+                        <span class="font-mono text-sm font-bold text-brandRed-600">Chrome DevTools (CDP)</span>
+                        <span class="text-xs text-charcoal-600 mt-1 font-medium">Portal DOM Automation</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center">
+                        <span class="font-mono text-sm font-bold text-charcoal-900">SQLite & MySQL</span>
+                        <span class="text-xs text-charcoal-600 mt-1 font-medium">Local Audit Logging</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center">
+                        <span class="font-mono text-sm font-bold text-brandRed-600">HTML5 / CSS / JS</span>
+                        <span class="text-xs text-charcoal-600 mt-1 font-medium">Modern Desktop GUI</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col items-center">
+                        <span class="font-mono text-sm font-bold text-charcoal-900">Excel & PDF Interop</span>
+                        <span class="text-xs text-charcoal-600 mt-1 font-medium">Deep COM Automation</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section>
-        <div class="container">
-            <h2 class="section-title">Business Impact</h2>
-            <p>Our Web-R automation solution has delivered significant benefits to clients:</p>
-            
-            <div class="impact-grid">
-                <div class="impact-item">
-                    <div class="impact-percentage">85%</div>
-                    <p>Reduction in documentation processing time</p>
-                </div>
+        </section>
+
+        <!-- CORE SERVICES (Clean Cards with Red & Charcoal Highlights) -->
+        <section id="services" class="py-24 bg-slate-50/70 border-b border-slate-200 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="impact-item">
-                    <div class="impact-percentage">90%</div>
-                    <p>Decrease in documentation errors</p>
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono text-brandRed-600 uppercase tracking-widest font-bold">Automation Capabilities</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal-900 mt-2 tracking-tight">
+                        Engineered For Customs Clearing, Exporters & Logistics
+                    </h2>
+                    <p class="text-charcoal-600 mt-4 text-base leading-relaxed">
+                        Replacing repetitive clerical work with automated accuracy, saving hundreds of office hours each month.
+                    </p>
                 </div>
-                
-                <div class="impact-item">
-                    <div class="impact-percentage">100%</div>
-                    <p>Data integrity between customs declarations and commercial invoices</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1: PDF & Excel Auto-Extraction -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-brandRed-50 border border-brandRed-100 flex items-center justify-center text-brandRed-600 mb-6 group-hover:bg-brandRed-600 group-hover:text-white transition">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-charcoal-900 mb-3">PDF & Excel Auto-Extraction</h3>
+                            <p class="text-charcoal-600 text-sm leading-relaxed mb-6">
+                                Auto-reads unstructured commercial invoices, packing lists, and raw Excel sheets. Cleanses data, executes tax/volume calculations, and drops clean structured tables directly into formatted Excel sheets.
+                            </p>
+                        </div>
+                        <ul class="text-xs text-charcoal-700 space-y-2.5 border-t border-slate-100 pt-5 font-medium">
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Multi-page invoice table extraction</li>
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Date-wise shipping bill extraction to Excel</li>
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Normalizes inconsistent unit measures</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: 1-Click Portal Submission -->
+                    <div class="bg-white p-8 rounded-2xl border-2 border-brandRed-500 shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 bg-brandRed-600 text-white text-[10px] font-mono font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Most Popular</div>
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-charcoal-900 flex items-center justify-center text-white mb-6 group-hover:bg-brandRed-600 transition">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-charcoal-900 mb-3">1-Click Portal Submission</h3>
+                            <p class="text-charcoal-600 text-sm leading-relaxed mb-6">
+                                Direct automated form-filling into Pakistan Single Window (PSW), WeBOC.gov.pk, and custom enterprise portals without human typing. Eliminates clerical typos and double entries permanently.
+                            </p>
+                        </div>
+                        <ul class="text-xs text-charcoal-700 space-y-2.5 border-t border-slate-100 pt-5 font-medium">
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Encrypted automatic portal login</li>
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Batch entry posting in seconds</li>
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Zero typing errors or wrong values</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Email Auto-Fetcher & Database Logger -->
+                    <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="w-14 h-14 rounded-xl bg-brandRed-50 border border-brandRed-100 flex items-center justify-center text-brandRed-600 mb-6 group-hover:bg-brandRed-600 group-hover:text-white transition">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-charcoal-900 mb-3">Email Fetcher & DB Logger</h3>
+                            <p class="text-charcoal-600 text-sm leading-relaxed mb-6">
+                                Silent background agent monitors client inboxes, extracts incoming invoice attachments and shipping bills to local directories, and logs every transaction in local SQLite/MySQL databases.
+                            </p>
+                        </div>
+                        <ul class="text-xs text-charcoal-700 space-y-2.5 border-t border-slate-100 pt-5 font-medium">
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Background inbox listener & auto-save</li>
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Local SQLite/MySQL audit trail</li>
+                            <li class="flex items-center gap-2"><span class="text-brandRed-600 font-bold">✓</span> Instant triggering of batch processing</li>
+                        </ul>
+                    </div>
+
                 </div>
+
+            </div>
+        </section>
+
+        <!-- INTERACTIVE "TIME & COST SAVED" CALCULATOR (Clean Card with Red Slider Accent) -->
+        <section id="calculator" class="py-24 bg-white border-b border-slate-200 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <div class="impact-item">
-                    <div class="impact-percentage">↑</div>
-                    <p>Increased productivity with existing staff</p>
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono text-brandRed-600 uppercase tracking-widest font-bold">Interactive ROI Calculator</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal-900 mt-2 tracking-tight">
+                        See Exactly How Many Hours Your Agency Will Save
+                    </h2>
+                    <p class="text-charcoal-600 mt-4 text-base leading-relaxed">
+                        Slide to match your daily document volume and watch the real-time difference between manual clerical typing and WEB-R TECH automated precision.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-slate-50 p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-soft">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                        
+                        <!-- Slider Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between items-center mb-3">
+                                    <label for="doc-slider" class="text-sm font-bold text-charcoal-900">Daily Documents / Entries Processed:</label>
+                                    <span id="doc-count-display" class="text-3xl font-black text-brandRed-600 font-mono">30</span>
+                                </div>
+                                <input id="doc-slider" type="range" min="5" max="200" value="30" step="5" class="w-full h-3 bg-slate-200 rounded-lg cursor-pointer accent-red-600">
+                                <div class="flex justify-between text-xs text-charcoal-500 mt-2 font-mono">
+                                    <span>5 Docs (Small Desk)</span>
+                                    <span>30 Docs (Average Agency)</span>
+                                    <span>200 Docs (Enterprise)</span>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-3 shadow-sm">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-charcoal-600">Manual Entry Time per Document:</span>
+                                    <span class="text-charcoal-900 font-mono font-bold">~15 Minutes</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-charcoal-600">WEB-R Automated Time per Document:</span>
+                                    <span class="text-brandRed-600 font-mono font-bold">~15 Seconds</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-charcoal-600">Monthly Working Days:</span>
+                                    <span class="text-charcoal-900 font-mono font-bold">26 Days</span>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-charcoal-500 italic">
+                                * Calculated from average typing speed, WebOC/PSW field inputs, validation checks, and re-entry overhead.
+                            </p>
+                        </div>
+
+                        <!-- Results Box Column -->
+                        <div class="bg-charcoal-900 text-white p-6 sm:p-8 rounded-2xl border border-charcoal-800 shadow-xl flex flex-col justify-between h-full">
+                            <div>
+                                <span class="text-xs font-mono text-brandRed-500 uppercase tracking-widest font-bold">Monthly Hours Recovered</span>
+                                
+                                <div class="mt-4 mb-6">
+                                    <div class="text-4xl sm:text-5xl font-black text-white font-mono" id="monthly-hours-saved">
+                                        190 Hours
+                                    </div>
+                                    <div class="text-xs text-emerald-400 font-semibold mt-1 flex items-center gap-1.5">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                        </svg>
+                                        <span>Saved from Manual Typing Every Month</span>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3 border-t border-charcoal-800 pt-4 text-sm">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400">Manual Time per Month:</span>
+                                        <span class="text-brandRed-400 font-mono font-bold" id="manual-hours">195 hrs</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400">WEB-R Automated Time:</span>
+                                        <span class="text-emerald-400 font-mono font-bold" id="auto-hours">3.25 hrs</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400">Full 8-Hour Work Shifts Saved:</span>
+                                        <span class="text-white font-mono font-bold" id="days-saved">~23.7 Days</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-slate-400">Annual Hours Saved:</span>
+                                        <span class="text-amber-400 font-mono font-bold" id="annual-hours">2,280 hrs/yr</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-6 border-t border-charcoal-800">
+                                <a id="calc-cta-btn" href="https://wa.me/923456069257?text=Hi%20WEB-R%20TECH%2C%20our%20team%20processes%20around%2030%20documents%20daily%20and%20we%20want%20to%20automate%20our%20workflow." target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-4 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white font-extrabold text-sm text-center shadow-red-glow transition-all flex items-center justify-center gap-2">
+                                    <span>Automate My 30 Daily Entries Now</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                    </svg>
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CLIENT SUPPORT & VIDEO TUTORIAL PORTAL (Crucial Requirement with Red/Charcoal Theme) -->
+        <section id="tutorials" class="py-24 bg-slate-50/70 border-b border-slate-200 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-mono text-brandRed-600 uppercase tracking-widest font-bold">Official Knowledge Base</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal-900 mt-2 tracking-tight">
+                        Video Support Hub & Tutorials
+                    </h2>
+                    <p class="text-charcoal-600 mt-4 text-base leading-relaxed">
+                        Watch step-by-step video guides directly on our website. Resolve setup steps, troubleshooting, and portal submission questions without waiting for support.
+                    </p>
+                </div>
+
+                <!-- Video Search & Category Filter Pills -->
+                <div class="max-w-4xl mx-auto mb-12 space-y-4">
+                    <!-- Search Input -->
+                    <div class="relative">
+                        <input type="text" id="video-search-input" placeholder="Search guides, topics (e.g. PSW, WebOC, PDF error, setup)..." class="w-full px-5 py-3.5 pl-12 rounded-xl bg-white border border-slate-300 text-charcoal-900 placeholder-slate-400 focus:outline-none focus:border-brandRed-600 focus:ring-2 focus:ring-brandRed-100 text-sm shadow-sm transition">
+                        <svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Category Filter Buttons -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 pt-2" id="category-pills">
+                        <button data-cat="all" class="cat-btn active-cat px-4 py-1.5 rounded-full text-xs font-bold bg-brandRed-600 text-white shadow-sm transition">All Guides</button>
+                        <button data-cat="setup" class="cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-charcoal-700 hover:bg-slate-100 border border-slate-200 transition">Setup Guide</button>
+                        <button data-cat="portal" class="cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-charcoal-700 hover:bg-slate-100 border border-slate-200 transition">Portal Sync</button>
+                        <button data-cat="extraction" class="cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-charcoal-700 hover:bg-slate-100 border border-slate-200 transition">PDF & Excel Data</button>
+                        <button data-cat="troubleshooting" class="cat-btn px-4 py-1.5 rounded-full text-xs font-bold bg-white text-charcoal-700 hover:bg-slate-100 border border-slate-200 transition">PDF Errors & Troubleshooting</button>
+                    </div>
+                </div>
+
+                <!-- Video Card Grid (Responsive cards with in-page player and full-screen option) -->
+                <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamically rendered via JS -->
+                </div>
+
+                <!-- Empty State Message -->
+                <div id="no-videos-found" class="hidden text-center py-12">
+                    <p class="text-charcoal-500 text-base">No matching video guides found. Try searching with different keywords or clear the filter.</p>
+                </div>
+
+                <!-- Direct Support Callout -->
+                <div class="mt-16 max-w-3xl mx-auto bg-white p-8 rounded-2xl border border-slate-200 shadow-soft text-center">
+                    <h3 class="text-xl font-bold text-charcoal-900 mb-2">Still Need Technical Assistance?</h3>
+                    <p class="text-charcoal-600 text-sm mb-6">Our automation engineering team provides direct 1-on-1 WhatsApp & AnyDesk support to get your desk up and running.</p>
+                    <a href="https://wa.me/923456069257?text=Hello%20Rizwan%2C%20I%20need%20technical%20assistance%20with%20Web-R%20automation." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white font-bold text-sm transition shadow-red-glow">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        <span>Contact WhatsApp Support Desk</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CLIENT PORTFOLIO & PROVEN TRACK RECORD -->
+        <section id="clients" class="py-24 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono text-brandRed-600 uppercase tracking-widest font-bold">Industry Trust</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal-900 mt-2 tracking-tight">
+                        Powering 22+ Top Pakistan Exporters & Agencies
+                    </h2>
+                    <p class="text-charcoal-600 mt-4 text-base leading-relaxed">
+                        Since 2020, our automation software has streamlined thousands of export Goods Declarations (GDs) and shipping documents for leading market players.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Direct Exporters -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-brandRed-600"></span>
+                            <h3 class="text-base font-bold text-charcoal-900 uppercase tracking-wider">Direct Exporters</h3>
+                        </div>
+                        <ul class="space-y-3">
+                            <li class="p-3.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between text-sm shadow-sm">
+                                <span class="font-bold text-charcoal-900">Artistic Garments (AGI)</span>
+                                <span class="text-xs text-brandRed-600 font-mono font-semibold">Apparel & Denim</span>
+                            </li>
+                            <li class="p-3.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between text-sm shadow-sm">
+                                <span class="font-bold text-charcoal-900">Artistic Apparel</span>
+                                <span class="text-xs text-brandRed-600 font-mono font-semibold">Textile Export</span>
+                            </li>
+                            <li class="p-3.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between text-sm shadow-sm">
+                                <span class="font-bold text-charcoal-900">Mavic Sports</span>
+                                <span class="text-xs text-brandRed-600 font-mono font-semibold">Sports Goods</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Customs & Export Agencies -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-charcoal-800"></span>
+                            <h3 class="text-base font-bold text-charcoal-900 uppercase tracking-wider">Customs & Export Agencies</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs text-charcoal-700 font-medium">
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Target Agencies</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">ZUA International</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Specious</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Marfani Brother</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Choudhary Trading</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">BARI International</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Cargo Linker</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Javid Esani</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">SA-REHMAT</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Sidq Enterprises</div>
+                        </div>
+                    </div>
+
+                    <!-- Logistics & Trade Partners -->
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
+                        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-slate-200">
+                            <span class="w-3 h-3 rounded-full bg-charcoal-600"></span>
+                            <h3 class="text-base font-bold text-charcoal-900 uppercase tracking-wider">Logistics & Trade Desks</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-xs text-charcoal-700 font-medium">
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Masood Enterprises</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Haq Traders</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Waseem Brothers</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Khan Enterprises</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">MBI Corp</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">SMS Enterprises</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Arshad Brother</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Prime Cargo</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Expiditor</div>
+                            <div class="p-2.5 bg-white rounded-lg border border-slate-200 shadow-xs">Pakistan Trade Desk</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- LEADERSHIP & TEAM SECTION -->
+        <section id="team" class="py-24 bg-slate-50/70 border-b border-slate-200 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-xs font-mono text-brandRed-600 uppercase tracking-widest font-bold">Leadership & Engineering</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal-900 mt-2 tracking-tight">
+                        Meet The Minds Behind WEB-R TECH
+                    </h2>
+                    <p class="text-charcoal-600 mt-4 text-base leading-relaxed">
+                        We are passionate robotic process automation engineers, systems architects, and trade documentation specialists committed to freeing businesses from manual data bottlenecks.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    
+                    <!-- Leader 1: Rizwan Ahmed -->
+                    <div class="bg-white p-8 rounded-2xl text-center border border-slate-200 shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative w-32 h-32 mx-auto mb-6">
+                                <img src="owner.jpg" alt="Rizwan Ahmed" class="w-full h-full object-cover rounded-full border-4 border-brandRed-600 shadow-md">
+                                <span class="absolute bottom-1 right-2 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white" title="Active"></span>
+                            </div>
+                            <h3 class="text-xl font-black text-charcoal-900">Rizwan Ahmed</h3>
+                            <p class="text-brandRed-600 text-sm font-bold mb-3">Founder & Lead Automation Developer</p>
+                            <p class="text-charcoal-600 text-xs leading-relaxed mb-6">
+                                Systems architect specializing in AutoHotkey v2, Microsoft WebView2 desktop applications, Chrome DevTools Protocol (CDP), and deep customs portal integration.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <a href="https://wa.me/923456069257" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-brandRed-600 hover:text-brandRed-700">
+                                <span>Direct WhatsApp: 0345-6069257</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Leader 2: Arbab Irfan -->
+                    <div class="bg-white p-8 rounded-2xl text-center border border-slate-200 shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative w-32 h-32 mx-auto mb-6 flex items-center justify-center rounded-full bg-slate-50 border-4 border-charcoal-900 p-3 shadow-md">
+                                <img src="logo.webp" alt="Arbab Irfan" class="w-20 h-20 object-contain">
+                            </div>
+                            <h3 class="text-xl font-black text-charcoal-900">Arbab Irfan</h3>
+                            <p class="text-charcoal-800 text-sm font-bold mb-3">Partner / Business Development</p>
+                            <p class="text-charcoal-600 text-xs leading-relaxed mb-6">
+                                Oversees client onboarding, enterprise customs compliance, agency workflow audits, and customized ERP synchronization strategies across major Pakistani trade hubs.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <a href="https://wa.me/923323079114" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-charcoal-900 hover:text-brandRed-600">
+                                <span>Direct WhatsApp: 0332-3079114</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Leader 3: Arhum Shahid -->
+                    <div class="bg-white p-8 rounded-2xl text-center border border-slate-200 shadow-soft hover:shadow-card-hover transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="relative w-32 h-32 mx-auto mb-6 flex items-center justify-center rounded-full bg-slate-50 border-4 border-brandRed-600 p-3 shadow-md">
+                                <img src="logo.webp" alt="Arhum Shahid" class="w-20 h-20 object-contain opacity-90">
+                            </div>
+                            <h3 class="text-xl font-black text-charcoal-900">Arhum Shahid</h3>
+                            <p class="text-brandRed-600 text-sm font-bold mb-3">Partner / Operations & Training</p>
+                            <p class="text-charcoal-600 text-xs leading-relaxed mb-6">
+                                Leads client training programs, video knowledge base documentation, user onboarding, and day-to-day operational support for agency staff.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-slate-100">
+                            <span class="text-xs font-bold text-charcoal-700">Operations & User Enablement</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT & AUDIT REQUEST SECTION -->
+        <section id="contact" class="py-24 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="max-w-4xl mx-auto bg-slate-50 p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-soft">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <!-- Left Info -->
+                        <div>
+                            <span class="text-xs font-mono text-brandRed-600 uppercase tracking-widest font-bold">Start Automating</span>
+                            <h2 class="text-3xl font-black text-charcoal-900 mt-2 leading-tight">
+                                Ready To Eliminate Manual Typing Today?
+                            </h2>
+                            <p class="text-charcoal-600 text-sm mt-4 leading-relaxed">
+                                Get in touch directly with our engineering team for a customized demo on your actual invoices and portal setup.
+                            </p>
+
+                            <div class="mt-8 space-y-4">
+                                <div class="flex items-center gap-3 text-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-brandRed-50 border border-brandRed-100 flex items-center justify-center text-brandRed-600 shadow-sm">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-charcoal-500 font-medium">WhatsApp / Phone (Rizwan Ahmed)</div>
+                                        <a href="tel:03456069257" class="font-bold text-charcoal-900 hover:text-brandRed-600 font-mono">0345-6069257</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-3 text-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-charcoal-800 shadow-sm">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-charcoal-500 font-medium">Business Inquiries (Arbab Irfan)</div>
+                                        <a href="tel:03323079114" class="font-bold text-charcoal-900 hover:text-brandRed-600 font-mono">0332-3079114</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-3 text-sm">
+                                    <div class="w-10 h-10 rounded-xl bg-brandRed-50 border border-brandRed-100 flex items-center justify-center text-brandRed-600 shadow-sm">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-charcoal-500 font-medium">Location</div>
+                                        <span class="font-bold text-charcoal-900">Karachi, Pakistan (Serving Nationwide Exporters)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Form (Direct WhatsApp Auto-Composer) -->
+                        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                            <h3 class="text-base font-black text-charcoal-900 mb-4">Request Custom Automation Audit</h3>
+                            <form id="contact-form" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-charcoal-700 mb-1">Your Name</label>
+                                    <input type="text" id="form-name" required placeholder="e.g. Tariq Mehmood" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-charcoal-900 placeholder-slate-400 text-sm focus:outline-none focus:border-brandRed-600 focus:bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-charcoal-700 mb-1">Company / Agency Name</label>
+                                    <input type="text" id="form-company" required placeholder="e.g. Apex Cargo & Clearing" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-charcoal-900 placeholder-slate-400 text-sm focus:outline-none focus:border-brandRed-600 focus:bg-white">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-charcoal-700 mb-1">Portals / Systems Used</label>
+                                    <select id="form-portal" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-charcoal-900 text-sm focus:outline-none focus:border-brandRed-600 focus:bg-white">
+                                        <option value="WeBOC + PSW (Both)">WeBOC + PSW (Both)</option>
+                                        <option value="WeBOC Portal Only">WeBOC Portal Only</option>
+                                        <option value="Pakistan Single Window (PSW)">Pakistan Single Window (PSW)</option>
+                                        <option value="Custom ERP / Invoices">Custom ERP / Internal Invoices</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-charcoal-700 mb-1">Primary Challenge / Needs</label>
+                                    <textarea id="form-message" rows="3" placeholder="Tell us about your daily document volume or specific entry bottlenecks..." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 border border-slate-300 text-charcoal-900 placeholder-slate-400 text-sm focus:outline-none focus:border-brandRed-600 focus:bg-white"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-3.5 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white font-extrabold text-sm shadow-red-glow transition flex items-center justify-center gap-2">
+                                    <span>Send Via WhatsApp Instant Chat</span>
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- LIGHT CORPORATE FOOTER -->
+    <footer class="bg-charcoal-900 border-t border-charcoal-800 py-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="logo.webp" alt="WEB-R TECH" class="h-9 w-9 object-contain rounded border border-charcoal-700 p-1 bg-white">
+                <div>
+                    <span class="text-sm font-black text-white"><span class="text-brandRed-500">WEB</span>-R TECH</span>
+                    <p class="text-slate-400 text-xs">Custom Robotic Process Automation & Trade Portal Systems</p>
                 </div>
             </div>
             
-            <div class="tech-list">
-                <h3 style="color: var(--secondary); margin-bottom: 1.5rem;">Technical Highlights</h3>
-                
-                <div class="tech-item">
-                    <div class="tech-title">Precision Matching</div>
-                    <p>The software performs exact checking between Weboc data and invoice data, ensuring quantities match precisely to avoid customs discrepancies</p>
-                </div>
-                
-                <div class="tech-item">
-                    <div class="tech-title">Format Standardization</div>
-                    <p>Automatically handles different formatting styles (e.g., "6.15327 MT" vs "6,153.27")</p>
-                </div>
-                
-                <div class="tech-item">
-                    <div class="tech-title">Audit Trail</div>
-                    <p>Each verification includes timestamp, user identification, and computer identification for compliance and accountability</p>
-                </div>
-                
-                <div class="tech-item">
-                    <div class="tech-title">Visual Status Indicators</div>
-                    <p>Clear "OK" status markers for quick identification of matching fields</p>
-                </div>
+            <div class="flex flex-wrap gap-6 text-slate-300 font-semibold">
+                <a href="#services" class="hover:text-brandRed-400 transition">Services</a>
+                <a href="#calculator" class="hover:text-brandRed-400 transition">ROI Calculator</a>
+                <a href="#tutorials" class="hover:text-brandRed-400 transition">Video Support</a>
+                <a href="#clients" class="hover:text-brandRed-400 transition">Clients</a>
+                <a href="#team" class="hover:text-brandRed-400 transition">Team</a>
+                <a href="#contact" class="hover:text-brandRed-400 transition">Contact</a>
             </div>
-        </div>
-    </section>
-    
-    <footer>
-        <div class="container">
-            <h2 style="margin-bottom: 2rem;">Contact Information</h2>
-            
-            <div class="contact-info">
-                <div class="contact-person">
-                    <div class="contact-name">Rizwan Ahmed</div>
-                    <p>Lead Developer</p>
-                    <p>Phone: 03456069257</p>
-                </div>
-                
-                <div class="contact-person">
-                    <div class="contact-name">Arbab Irfan</div>
-                    <p>Senior Developer</p>
-                    <p>Phone: 0332-3079114</p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>Web-R - Pakistan Customs Automation Solutions</p>
-                <p>Streamlining Export Documentation Since 2020</p>
+
+            <div class="text-slate-400 text-center md:text-right font-mono">
+                © 2020-2026 WEB-R TECH. All Rights Reserved.
             </div>
         </div>
     </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON (BRAND RED / CRIMSON HIGH CONVERSION CTA) -->
+    <a href="https://wa.me/923456069257?text=Hello%20WEB-R%20TECH%2C%20I%20have%20an%20urgent%20inquiry%20regarding%20customs%20automation." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-4 py-3 bg-brandRed-600 hover:bg-brandRed-700 text-white rounded-full shadow-red-glow hover:shadow-2xl transition-all transform hover:scale-105 group" title="Chat with Founder on WhatsApp">
+        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+        <span class="hidden sm:inline font-bold text-xs tracking-wide">Quick WhatsApp Help</span>
+    </a>
+
+    <!-- JAVASCRIPT LOGIC (Interactive Calculator, Video Knowledge Base & Form Generator) -->
+    <script>
+        // --------------------------------------------------------------------------
+        // 1. MOBILE MENU TOGGLE
+        // --------------------------------------------------------------------------
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // --------------------------------------------------------------------------
+        // 2. INTERACTIVE TIME & COST SAVED CALCULATOR
+        // --------------------------------------------------------------------------
+        const docSlider = document.getElementById('doc-slider');
+        const docCountDisplay = document.getElementById('doc-count-display');
+        const monthlyHoursSaved = document.getElementById('monthly-hours-saved');
+        const manualHours = document.getElementById('manual-hours');
+        const autoHours = document.getElementById('auto-hours');
+        const daysSaved = document.getElementById('days-saved');
+        const annualHours = document.getElementById('annual-hours');
+        const calcCtaBtn = document.getElementById('calc-cta-btn');
+
+        function updateCalculator() {
+            const docsPerDay = parseInt(docSlider.value, 10);
+            const workingDaysPerMonth = 26;
+            const monthlyDocs = docsPerDay * workingDaysPerMonth;
+
+            // Assumptions:
+            // Manual: 15 minutes per document (0.25 hours)
+            // WEB-R Tech: 15 seconds per document (0.00416 hours)
+            const manualHrs = Math.round(monthlyDocs * 0.25);
+            const autoHrsVal = (monthlyDocs * (15 / 3600)).toFixed(1);
+            const hrsSaved = Math.max(0, Math.round(manualHrs - parseFloat(autoHrsVal)));
+            const daysRecovered = (hrsSaved / 8).toFixed(1);
+            const annualHrsSaved = (hrsSaved * 12).toLocaleString();
+
+            docCountDisplay.textContent = docsPerDay;
+            monthlyHoursSaved.textContent = `${hrsSaved.toLocaleString()} Hours`;
+            manualHours.textContent = `${manualHrs.toLocaleString()} hrs`;
+            autoHours.textContent = `${autoHrsVal} hrs`;
+            daysSaved.textContent = `~${daysRecovered} Days (8h shifts)`;
+            annualHours.textContent = `${annualHrsSaved} hrs/yr`;
+
+            // Update CTA Button dynamic text & WhatsApp link
+            calcCtaBtn.innerHTML = `<span>Automate My ${docsPerDay} Daily Entries Now</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>`;
+            calcCtaBtn.href = `https://wa.me/923456069257?text=Hi%20WEB-R%20TECH%2C%20our%20team%20processes%20approx%20${docsPerDay}%20documents%20daily%20and%20we%20want%20to%20save%20${hrsSaved}%20hours%20every%20month.%20Please%20share%20details!`;
+        }
+
+        docSlider.addEventListener('input', updateCalculator);
+        updateCalculator(); // Initialize on page load
+
+        // --------------------------------------------------------------------------
+        // 3. VIDEO KNOWLEDGE BASE (Interactive In-Page YouTube Grid)
+        // --------------------------------------------------------------------------
+        const YOUTUBE_TUTORIALS = [
+            {
+                id: '1',
+                youtubeId: 'M7lc1UVf-VE',
+                title: 'WebOC & PSW 1-Click Automated Entry Submission Demo',
+                category: 'portal',
+                categoryLabel: 'Portal Sync',
+                description: 'Complete walkthrough showing automatic encrypted credential login, item entry mapping, and 1-click batch submission in 5 seconds.'
+            },
+            {
+                id: '2',
+                youtubeId: 'ScMzIvxBSi4',
+                title: 'Extracting Messy PDF Invoices & Raw Excel Data to Clean Tables',
+                category: 'extraction',
+                categoryLabel: 'PDF & Excel Data',
+                description: 'How our smart OCR and extraction engine reads multi-page complex shipping bills and converts them to formatted Excel files.'
+            },
+            {
+                id: '3',
+                youtubeId: 'kJQP7kiw5Fk',
+                title: 'WEB-R Desktop Software Setup & Initial Configuration Guide',
+                category: 'setup',
+                categoryLabel: 'Setup Guide',
+                description: 'Step-by-step installation instructions for the lightweight Windows AutoHotkey v2 + Microsoft WebView2 desktop runtime.'
+            },
+            {
+                id: '4',
+                youtubeId: 'fJ9rUzIMcZQ',
+                title: 'Resolving PDF Parsing & Customs Discrepancy Errors',
+                category: 'troubleshooting',
+                categoryLabel: 'PDF Errors & Troubleshooting',
+                description: 'What to do when customs portals reject format differences (e.g. metric tons vs kilograms or comma separators).'
+            },
+            {
+                id: '5',
+                youtubeId: 'L_LUpnjgPso',
+                title: 'Automated Container Status & Shipping Line Tracking',
+                category: 'portal',
+                categoryLabel: 'Portal Sync',
+                description: 'Extracting live container stages, GD positions, and clearance timestamps across multiple shipping line portals.'
+            },
+            {
+                id: '6',
+                youtubeId: '3JZ_D3ELwOQ',
+                title: 'Automated Email Attachment Ingestion & Auto-Save Setup',
+                category: 'extraction',
+                categoryLabel: 'PDF & Excel Data',
+                description: 'Configuring background email inbox monitoring to auto-fetch new invoices directly into your local processing folder.'
+            }
+        ];
+
+        const videoGrid = document.getElementById('video-grid');
+        const noVideosFound = document.getElementById('no-videos-found');
+        const videoSearchInput = document.getElementById('video-search-input');
+        const categoryButtons = document.querySelectorAll('.cat-btn');
+
+        let currentCategory = 'all';
+        let currentSearchQuery = '';
+
+        function renderVideos() {
+            videoGrid.innerHTML = '';
+            
+            const filtered = YOUTUBE_TUTORIALS.filter(video => {
+                const matchesCat = (currentCategory === 'all' || video.category === currentCategory);
+                const matchesQuery = video.title.toLowerCase().includes(currentSearchQuery) ||
+                                     video.description.toLowerCase().includes(currentSearchQuery) ||
+                                     video.categoryLabel.toLowerCase().includes(currentSearchQuery);
+                return matchesCat && matchesQuery;
+            });
+
+            if (filtered.length === 0) {
+                noVideosFound.classList.remove('hidden');
+            } else {
+                noVideosFound.classList.add('hidden');
+                
+                filtered.forEach(video => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-soft hover:shadow-card-hover flex flex-col justify-between transition-all';
+                    
+                    card.innerHTML = `
+                        <div>
+                            <!-- Responsive YouTube Iframe Embed Container (Plays directly on website with Fullscreen option) -->
+                            <div class="relative w-full aspect-video bg-charcoal-900 border-b border-slate-200">
+                                <iframe 
+                                    class="w-full h-full" 
+                                    src="https://www.youtube.com/embed/${video.youtubeId}?enablejsapi=1&rel=0" 
+                                    title="${video.title}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    allowfullscreen
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+
+                            <div class="p-5">
+                                <div class="flex items-center justify-between gap-2 mb-2">
+                                    <span class="inline-block text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-brandRed-50 text-brandRed-700 border border-brandRed-100 font-bold">
+                                        ${video.categoryLabel}
+                                    </span>
+                                </div>
+                                <h3 class="text-base font-bold text-charcoal-900 mb-2 leading-snug line-clamp-2">${video.title}</h3>
+                                <p class="text-xs text-charcoal-600 leading-relaxed line-clamp-3">${video.description}</p>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 pt-3 flex items-center justify-between border-t border-slate-100 bg-slate-50/50">
+                            <span class="text-[11px] text-charcoal-500 font-mono font-medium">In-Page Video Player</span>
+                            <a href="https://wa.me/923456069257?text=Hi%2C%20I%20have%20a%20question%20regarding%20video%3A%20${encodeURIComponent(video.title)}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brandRed-600 hover:text-brandRed-700 flex items-center gap-1">
+                                <span>Ask About This</span>
+                                <span>→</span>
+                            </a>
+                        </div>
+                    `;
+
+                    videoGrid.appendChild(card);
+                });
+            }
+        }
+
+        // Search Listener
+        videoSearchInput.addEventListener('input', (e) => {
+            currentSearchQuery = e.target.value.toLowerCase().trim();
+            renderVideos();
+        });
+
+        // Category Filter Listener
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => {
+                    b.classList.remove('bg-brandRed-600', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-white', 'text-charcoal-700', 'border', 'border-slate-200');
+                });
+                btn.classList.remove('bg-white', 'text-charcoal-700', 'border', 'border-slate-200');
+                btn.classList.add('bg-brandRed-600', 'text-white', 'shadow-sm');
+                
+                currentCategory = btn.getAttribute('data-cat');
+                renderVideos();
+            });
+        });
+
+        // Initial render
+        renderVideos();
+
+        // --------------------------------------------------------------------------
+        // 4. CONTACT FORM TO WHATSAPP AUTOMATION
+        // --------------------------------------------------------------------------
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value.trim();
+            const company = document.getElementById('form-company').value.trim();
+            const portal = document.getElementById('form-portal').value;
+            const message = document.getElementById('form-message').value.trim();
+
+            const text = `*New WEB-R TECH Automation Inquiry*%0A%0A` +
+                         `*Name:* ${encodeURIComponent(name)}%0A` +
+                         `*Company:* ${encodeURIComponent(company)}%0A` +
+                         `*Portal Used:* ${encodeURIComponent(portal)}%0A` +
+                         `*Details:* ${encodeURIComponent(message || 'Requesting a demo and audit.')}`;
+
+            const waUrl = `https://wa.me/923456069257?text=${text}`;
+            window.open(waUrl, '_blank');
+        });
+
+    </script>
 </body>
 </html>
