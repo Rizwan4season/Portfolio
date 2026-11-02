@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Support Hub & Troubleshooting Portal | WEB-R INNOVATION AND EXCELLENCE</title>
+    <meta name="description" content="Official video knowledge base for WEB-R INNOVATION AND EXCELLENCE automation tools. Step-by-step guides for troubleshooting WeBOC, Pakistan Single Window (PSW), PDF extraction, and new project releases.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        brandRed: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                        },
+                        charcoal: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            600: '#475569',
+                            500: '#64748b',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                        'card-hover': '0 14px 28px rgba(0,0,0,0.08), 0 10px 10px rgba(0,0,0,0.04)',
+                        'red-glow': '0 4px 20px -2px rgba(220, 38, 38, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .bg-grid-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.7; }
+            100% { transform: scale(0.95); opacity: 1; }
+        }
+        .highlight-card {
+            outline: 3px solid #dc2626;
+            animation: pulse-ring 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-white text-charcoal-800 font-sans antialiased selection:bg-brandRed-600 selection:text-white relative">
+
+    <!-- Top Notification Bar -->
+    <div class="bg-charcoal-900 text-white text-xs sm:text-sm py-2 px-4 border-b border-charcoal-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-brandRed-600 text-white font-mono">SUPPORT DESK</span>
+                <span class="text-slate-300">Official Video Knowledge Base & Troubleshooting Guides for WEB-R Clients.</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs font-mono">
+                <a href="https://wa.me/923456069257" target="_blank" rel="noopener noreferrer" class="text-brandRed-400 hover:text-white transition font-semibold">Emergency WhatsApp: 0345-6069257</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Corporate Navbar -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all duration-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Brand Logo: WEB-R INNOVATION AND EXCELLENCE -->
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="logo.gif" alt="WEB-R INNOVATION AND EXCELLENCE Logo" class="h-11 w-11 object-contain rounded-lg border border-slate-200 p-1 bg-white shadow-sm group-hover:border-brandRed-500 transition">
+                    <div class="flex flex-col">
+                        <span class="text-xl sm:text-2xl font-black tracking-tight text-charcoal-900 leading-none">
+                            <span class="text-brandRed-600">WEB</span><span class="text-charcoal-900">-R</span>
+                        </span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-charcoal-700 mt-1">INNOVATION & EXCELLENCE</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="index.html" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Home</a>
+                    <a href="videos.html" class="px-3.5 py-2 text-sm font-bold text-brandRed-600 bg-brandRed-50/70 rounded-lg transition flex items-center gap-1.5 border border-brandRed-100">
+                        <span class="inline-block w-2 h-2 rounded-full bg-brandRed-600 animate-pulse"></span>
+                        Video Support Hub
+                    </a>
+                    <a href="projects.html" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">New & Other Projects</a>
+                    <a href="index.html#calculator" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Time Calculator</a>
+                    <a href="index.html#clients" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Clients</a>
+                    <a href="contact.html" class="px-3.5 py-2 text-sm font-semibold text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-50 rounded-lg transition">Support & Contact</a>
+                </nav>
+
+                <!-- Right Action Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://wa.me/923456069257?text=Hello%20Rizwan%2C%20I%20need%20quick%20support%20with%20Web-R%20Automation%20Tool." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white text-sm font-bold shadow-red-glow hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                        </svg>
+                        <span>WhatsApp Desk</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex lg:hidden">
+                    <button id="mobile-menu-btn" type="button" class="p-2 rounded-lg text-charcoal-700 hover:text-brandRed-600 hover:bg-slate-100">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden px-4 pt-2 pb-6 space-y-2 bg-white border-b border-slate-200 shadow-xl">
+            <a href="index.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100">Home</a>
+            <a href="videos.html" class="block px-3 py-2.5 rounded-lg text-base font-bold text-brandRed-600 bg-brandRed-50">Video Support Hub</a>
+            <a href="projects.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100">New & Other Projects</a>
+            <a href="index.html#calculator" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100">Time Calculator</a>
+            <a href="index.html#clients" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100">Clients</a>
+            <a href="contact.html" class="block px-3 py-2.5 rounded-lg text-base font-semibold text-charcoal-800 hover:bg-slate-100">Support & Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="relative bg-gradient-to-b from-white via-slate-50 to-slate-100/60 pt-12 pb-16 border-b border-slate-200 bg-grid-pattern">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
+                
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brandRed-50 border border-brandRed-100 text-brandRed-700 text-xs sm:text-sm font-bold mb-4 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-brandRed-600 animate-ping"></span>
+                    <span>1-Click Interactive In-Page Play & Full Screen Mode</span>
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-charcoal-900 leading-tight mb-4">
+                    Video Knowledge Base & <span class="text-brandRed-600">Troubleshooting Hub</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-charcoal-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                    Click any video below to play directly on this website. Expand to full screen at any time or copy direct reference links for your clients.
+                </p>
+
+                <!-- Search & Filter Controls -->
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <!-- Search Input -->
+                    <div class="relative">
+                        <input type="text" id="video-search-input" placeholder="Search by video title, keyword (e.g. EFS, GD, Container, Reset, ERP, Balance)..." class="w-full px-5 py-4 pl-12 rounded-2xl bg-white border border-slate-300 text-charcoal-900 placeholder-slate-400 focus:outline-none focus:border-brandRed-600 focus:ring-4 focus:ring-brandRed-100 text-sm shadow-soft transition">
+                        <svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+
+                    <!-- Category Pills -->
+                    <div class="flex flex-wrap items-center justify-center gap-2 pt-2" id="category-pills">
+                        <button data-cat="all" class="cat-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-brandRed-600 text-white shadow-sm transition">
+                            All Guides (<span id="count-all">0</span>)
+                        </button>
+                        <button data-cat="webr-automation" class="cat-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-charcoal-700 hover:bg-slate-100 border border-slate-200 transition">
+                            ⚡ WEB-R Automation (<span id="count-automation">0</span>)
+                        </button>
+                        <button data-cat="new-projects" class="cat-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white text-charcoal-700 hover:bg-slate-100 border border-slate-200 transition">
+                            🚀 New and Other Projects (<span id="count-projects">0</span>)
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VIDEO CARDS GRID -->
+        <section class="py-16 bg-slate-50/70 min-h-[500px]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Toast for Copied Links -->
+                <div id="copy-toast" class="fixed top-24 right-6 z-50 transform translate-y-[-150%] transition-transform duration-300 bg-charcoal-900 text-white px-5 py-3 rounded-xl shadow-xl flex items-center gap-3 border border-brandRed-500">
+                    <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                    <span class="text-xs font-bold font-mono" id="toast-message">Direct link copied to clipboard! Ready to share with client.</span>
+                </div>
+
+                <!-- Video Grid Container -->
+                <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic rendering via JS -->
+                </div>
+
+                <!-- No Results State -->
+                <div id="no-videos-found" class="hidden text-center py-20 bg-white rounded-3xl border border-slate-200 shadow-sm max-w-2xl mx-auto">
+                    <div class="w-16 h-16 rounded-full bg-brandRed-50 text-brandRed-600 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-charcoal-900 mb-2">No Matching Video Guides Found</h3>
+                    <p class="text-charcoal-600 text-sm mb-6">Need help with an unlisted topic? Contact our engineering desk directly.</p>
+                    <a href="https://wa.me/923456069257?text=Hello%20Rizwan%2C%20I%20need%20assistance%20with%20Web-R%20automation." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white font-bold text-xs shadow-md">
+                        <span>Chat on WhatsApp: 0345-6069257</span>
+                    </a>
+                </div>
+
+                <!-- Help Desk Banner -->
+                <div class="mt-16 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-soft flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="space-y-2 text-center md:text-left">
+                        <span class="text-xs font-mono font-bold text-brandRed-600 uppercase tracking-wider">Fast Direct Client Reference</span>
+                        <h3 class="text-xl sm:text-2xl font-black text-charcoal-900">How to send reference videos to your clients?</h3>
+                        <p class="text-charcoal-600 text-xs sm:text-sm max-w-xl">
+                            Click <strong>"Copy Link"</strong> on any video card above. You get a direct URL (e.g. <code>videos.html?ref=REF-01</code>) that you can embed inside your main tool or send over WhatsApp. The page will instantly open and highlight the exact solution for the client!
+                        </p>
+                    </div>
+                    <div class="shrink-0 flex flex-col sm:flex-row gap-3">
+                        <a href="projects.html" class="px-6 py-3 rounded-xl bg-charcoal-900 hover:bg-charcoal-800 text-white font-bold text-xs text-center transition">
+                            Explore New Projects
+                        </a>
+                        <a href="https://wa.me/923456069257" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl bg-brandRed-600 hover:bg-brandRed-700 text-white font-bold text-xs text-center shadow-red-glow transition">
+                            Contact Lead Developer
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- IN-PAGE FULLSCREEN THEATER MODAL -->
+    <div id="theater-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-3 sm:p-6 transition-all duration-300">
+        <!-- Modal Top Bar -->
+        <div class="w-full max-w-5xl flex items-center justify-between pb-3 text-white border-b border-white/10 mb-3">
+            <div class="flex items-center gap-3">
+                <span id="theater-ref" class="text-xs font-mono font-bold bg-brandRed-600 px-2.5 py-0.5 rounded text-white">REF</span>
+                <h3 id="theater-title" class="text-sm sm:text-base font-bold truncate max-w-md sm:max-w-xl text-slate-100">Video Title</h3>
+            </div>
+            <div class="flex items-center gap-2">
+                <button id="theater-fullscreen-btn" onclick="toggleNativeFullscreen()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold flex items-center gap-1.5 transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0 0l-5-5m-7 11l-5 5m0 0h4m-4 0v-4m16 4l-5-5m5 5v-4m0 4h-4"></path>
+                    </svg>
+                    <span>Full Monitor</span>
+                </button>
+                <button onclick="closeTheaterMode()" class="p-2 rounded-lg bg-white/10 hover:bg-brandRed-600 text-white transition" title="Close (ESC)">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Theater Video Container -->
+        <div id="theater-player-container" class="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+            <iframe 
+                id="theater-iframe"
+                class="w-full h-full"
+                src=""
+                title="WEB-R Video Player"
+                frameborder="0"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                allowfullscreen="true">
+            </iframe>
+        </div>
+
+        <!-- Modal Bottom Hint -->
+        <div class="w-full max-w-5xl flex items-center justify-between pt-3 text-xs text-slate-400">
+            <span>Playing directly on WEB-R Support Hub • Press <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">ESC</kbd> to exit theater mode</span>
+            <span id="theater-cat" class="text-brandRed-400 font-semibold">Category</span>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal-900 border-t border-charcoal-800 py-12 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="logo.gif" alt="WEB-R INNOVATION AND EXCELLENCE" class="h-9 w-9 object-contain rounded border border-charcoal-700 p-1 bg-white">
+                <div>
+                    <span class="text-sm font-black text-white"><span class="text-brandRed-500">WEB</span>-R INNOVATION AND EXCELLENCE</span>
+                    <p class="text-slate-400 text-xs">Custom Robotic Process Automation & Trade Portal Systems</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-6 text-slate-300 font-semibold">
+                <a href="index.html" class="hover:text-brandRed-400 transition">Home</a>
+                <a href="videos.html" class="hover:text-brandRed-400 transition">Video Support Hub</a>
+                <a href="projects.html" class="hover:text-brandRed-400 transition">New & Other Projects</a>
+                <a href="index.html#calculator" class="hover:text-brandRed-400 transition">ROI Calculator</a>
+                <a href="contact.html" class="hover:text-brandRed-400 transition">Contact</a>
+            </div>
+
+            <div class="text-slate-400 text-center md:text-right font-mono">
+                © 2020-2026 WEB-R INNOVATION AND EXCELLENCE. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT: DATA & INTERACTION ENGINE -->
+    <script>
+        // ==========================================================================
+        // OFFICIAL VIDEO DATABASE
+        // To add future videos: simply append a new object to this array!
+        // ==========================================================================
+        const VIDEO_DATABASE = [
+            // ----------------------------------------------------------------------
+            // CATEGORY 1: WEB-R Automation (Tool Guides & Issue Resolution)
+            // ----------------------------------------------------------------------
+            {
+                ref: 'REF-01',
+                youtubeId: '7uyxrVct5Mc',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'Item plus EFS Posting',
+                description: 'Complete walkthrough on automated item mapping and seamless EFS (Export Facilitation Scheme) posting with 1-click precision.',
+                tags: ['EFS', 'Item Posting', 'WeBOC', 'PSW', 'Automation']
+            },
+            {
+                ref: 'REF-02',
+                youtubeId: '6AkFRlwEiMk',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'Monthly Statement Generation',
+                description: 'How to extract and generate consolidated monthly transaction statements, consignment ledgers, and export statistics automatically.',
+                tags: ['Monthly Statement', 'Reporting', 'Export Ledger', 'Accounting']
+            },
+            {
+                ref: 'REF-03',
+                youtubeId: 'xV6y3KWGZuU',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'How to Get Data Track Detection',
+                description: 'Step-by-step guide to detecting data tracking points, identifying consignment history, and managing tracking logs effortlessly.',
+                tags: ['Data Track', 'Detection', 'Tracking', 'Troubleshooting']
+            },
+            {
+                ref: 'REF-04',
+                youtubeId: 'sGVu-28PW5U',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'GD View PDF',
+                description: 'Instant Goods Declaration (GD) PDF retrieval, previewing submitted customs forms, and automated document downloading.',
+                tags: ['GD View', 'PDF', 'Customs GD', 'Document Download']
+            },
+            {
+                ref: 'REF-05',
+                youtubeId: '7tzF4-DDAq4',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'How to Check Web-R Registration',
+                description: 'How to verify your agency software registration status, license activation, and machine authorization keys.',
+                tags: ['Registration', 'License', 'Activation', 'Web-R Setup']
+            },
+            {
+                ref: 'REF-06',
+                youtubeId: 'Sdke-H5DQIk',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'How to Check Saved GDs Number',
+                description: 'Locating, verifying, and cross-referencing previously saved GD numbers, draft submissions, and completed customs filings.',
+                tags: ['Saved GDs', 'GD Numbers', 'Verification', 'Drafts']
+            },
+            {
+                ref: 'REF-07',
+                youtubeId: 'Bz8uW2cepl0',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'How to Update Container Number',
+                description: 'Quick operational guide on updating or modifying container numbers, shipping seals, and consignment details before posting.',
+                tags: ['Container Number', 'Update', 'Shipping Line', 'Modification']
+            },
+            {
+                ref: 'REF-08',
+                youtubeId: 'TCx8a7H4yNE',
+                category: 'webr-automation',
+                categoryBadge: 'WEB-R Automation',
+                title: 'How to Reset Web-R Tool',
+                description: 'Clean troubleshooting procedure to reset cached temporary files, session tokens, and restore default high-speed settings.',
+                tags: ['Reset', 'Troubleshooting', 'Cache Reset', 'Tool Maintenance']
+            },
+
+            // ----------------------------------------------------------------------
+            // CATEGORY 2: New and Other Projects
+            // ----------------------------------------------------------------------
+            {
+                ref: 'REF-09',
+                youtubeId: 'KHw0k_579q4',
+                category: 'new-projects',
+                categoryBadge: 'New and Other Projects',
+                title: 'Accounts Management ERP System for Clearing Agents',
+                description: 'Enterprise accounting software built specially for customs clearing agents: client billing, GD expense ledgers, debit/credit notes, and cash flow.',
+                tags: ['Accounts ERP', 'Clearing Agents', 'Billing', 'Finance System']
+            },
+            {
+                ref: 'REF-10',
+                youtubeId: 'gxTa-T6pMws',
+                category: 'new-projects',
+                categoryBadge: 'New and Other Projects',
+                title: 'Import and Export Management System for Traders',
+                description: 'All-in-one trade management platform covering commercial invoices, shipment tracking, LC management, and duty cost estimations.',
+                tags: ['Import Export', 'Traders Management', 'Shipments', 'Trade ERP']
+            },
+            {
+                ref: 'REF-11',
+                youtubeId: 'v-ezMfLHKn4',
+                category: 'new-projects',
+                categoryBadge: 'New and Other Projects',
+                title: 'Mobile Inventory Management ERP System',
+                description: 'Warehouse and mobile barcode/IMEI inventory tracking system with real-time stock balances, sales orders, and purchase management.',
+                tags: ['Mobile Inventory', 'Warehouse ERP', 'Stock Management', 'Mobile ERP']
+            },
+            {
+                ref: 'REF-12',
+                youtubeId: 'ZGfWwQs6i3s',
+                category: 'new-projects',
+                categoryBadge: 'New and Other Projects',
+                title: "How to Check Remaining Balance with GD's Number",
+                description: 'Real-time financial reconciliation checking remaining client balances, deposit margins, and clearing fees tied directly to GD numbers.',
+                tags: ['Remaining Balance', 'GD Reconciliation', 'Accounts', 'Client Margins']
+            }
+        ];
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
+        // Elements
+        const videoGrid = document.getElementById('video-grid');
+        const noVideosFound = document.getElementById('no-videos-found');
+        const searchInput = document.getElementById('video-search-input');
+        const categoryButtons = document.querySelectorAll('.cat-btn');
+        const copyToast = document.getElementById('copy-toast');
+        const toastMessage = document.getElementById('toast-message');
+
+        // Theater Elements
+        const theaterModal = document.getElementById('theater-modal');
+        const theaterIframe = document.getElementById('theater-iframe');
+        const theaterTitle = document.getElementById('theater-title');
+        const theaterRef = document.getElementById('theater-ref');
+        const theaterCat = document.getElementById('theater-cat');
+        const theaterContainer = document.getElementById('theater-player-container');
+
+        // Counters
+        document.getElementById('count-all').textContent = VIDEO_DATABASE.length;
+        document.getElementById('count-automation').textContent = VIDEO_DATABASE.filter(v => v.category === 'webr-automation').length;
+        document.getElementById('count-projects').textContent = VIDEO_DATABASE.filter(v => v.category === 'new-projects').length;
+
+        let activeCategory = 'all';
+        let searchQuery = '';
+
+        function showToast(msg) {
+            toastMessage.textContent = msg;
+            copyToast.classList.remove('translate-y-[-150%]');
+            copyToast.classList.add('translate-y-0');
+            setTimeout(() => {
+                copyToast.classList.remove('translate-y-0');
+                copyToast.classList.add('translate-y-[-150%]');
+            }, 3000);
+        }
+
+        function copyDirectLink(ref) {
+            const url = `${window.location.origin}${window.location.pathname}?ref=${encodeURIComponent(ref)}#${encodeURIComponent(ref)}`;
+            navigator.clipboard.writeText(url).then(() => {
+                showToast(`Direct Link for [${ref}] copied! Ready to share with client.`);
+            }).catch(() => {
+                showToast(`Reference link: ${url}`);
+            });
+        }
+
+        // ==========================================================================
+        // SMART INLINE VIDEO PLAYBACK (Eliminates Error 153 on page load!)
+        // ==========================================================================
+        function playVideoInline(ref, youtubeId, rawTitle) {
+            // If running directly off local hard drive (file:///), YouTube blocks iframes with Error 153.
+            // Automatically bridge to the local development server or notify user.
+            if (window.location.protocol === 'file:') {
+                window.location.href = `http://localhost:8080/videos.html?ref=${ref}&autoplay=1#${ref}`;
+                return;
+            }
+
+            const container = document.getElementById(`player-container-${ref}`);
+            if (!container) return;
+            
+            const title = decodeURIComponent(rawTitle);
+            container.innerHTML = `
+                <iframe 
+                    class="w-full h-full" 
+                    src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0" 
+                    title="${title}" 
+                    frameborder="0" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+                    allowfullscreen="true">
+                </iframe>
+            `;
+            container.onclick = null;
+            container.classList.remove('cursor-pointer');
+        }
+
+        // ==========================================================================
+        // THEATER / FULLSCREEN MODE LOGIC (Plays directly on-site, zero external jump)
+        // ==========================================================================
+        function openTheaterMode(youtubeId, rawTitle, refCode, catBadge) {
+            if (window.location.protocol === 'file:') {
+                window.location.href = `http://localhost:8080/videos.html?theater=${youtubeId}&ref=${refCode}`;
+                return;
+            }
+
+            const title = decodeURIComponent(rawTitle);
+            theaterTitle.textContent = title;
+            theaterRef.textContent = `REF: #${refCode}`;
+            theaterCat.textContent = catBadge || 'WEB-R Video Support';
+            
+            theaterIframe.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+            theaterModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTheaterMode() {
+            theaterIframe.src = ''; // Stop video playback
+            theaterModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            if (document.fullscreenElement) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+
+        function toggleNativeFullscreen() {
+            if (!document.fullscreenElement) {
+                if (theaterContainer.requestFullscreen) {
+                    theaterContainer.requestFullscreen();
+                } else if (theaterContainer.webkitRequestFullscreen) {
+                    theaterContainer.webkitRequestFullscreen();
+                } else if (theaterContainer.msRequestFullscreen) {
+                    theaterContainer.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Close on ESC key or backdrop click
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !theaterModal.classList.contains('hidden')) {
+                closeTheaterMode();
+            }
+        });
+
+        theaterModal.addEventListener('click', (e) => {
+            if (e.target === theaterModal) {
+                closeTheaterMode();
+            }
+        });
+
+        // ==========================================================================
+        // RENDER VIDEO CARDS (Interactive Facade with Real YouTube Thumbnails)
+        // ==========================================================================
+        function renderVideos() {
+            videoGrid.innerHTML = '';
+            
+            const filtered = VIDEO_DATABASE.filter(item => {
+                const matchesCat = (activeCategory === 'all' || item.category === activeCategory);
+                const q = searchQuery.toLowerCase().trim();
+                const matchesSearch = !q || 
+                    item.ref.toLowerCase().includes(q) ||
+                    item.title.toLowerCase().includes(q) ||
+                    item.description.toLowerCase().includes(q) ||
+                    item.tags.some(t => t.toLowerCase().includes(q));
+                return matchesCat && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                noVideosFound.classList.remove('hidden');
+            } else {
+                noVideosFound.classList.add('hidden');
+
+                filtered.forEach(video => {
+                    const card = document.createElement('div');
+                    card.id = video.ref;
+                    card.className = 'bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-soft hover:shadow-card-hover flex flex-col justify-between transition-all duration-300';
+
+                    const isAutomation = video.category === 'webr-automation';
+                    const badgeClass = isAutomation 
+                        ? 'bg-brandRed-50 text-brandRed-700 border-brandRed-200' 
+                        : 'bg-emerald-50 text-emerald-700 border-emerald-200';
+
+                    // Smart interactive player: Shows real YouTube thumbnail with big red play button like Snap 1
+                    card.innerHTML = `
+                        <div>
+                            <!-- Interactive Video Player Container -->
+                            <div 
+                                id="player-container-${video.ref}"
+                                onclick="playVideoInline('${video.ref}', '${video.youtubeId}', '${encodeURIComponent(video.title)}')"
+                                class="relative w-full aspect-video bg-charcoal-900 border-b border-slate-200 overflow-hidden cursor-pointer group"
+                                title="Click to play video">
+                                
+                                <!-- High-Res Official YouTube Thumbnail -->
+                                <img 
+                                    src="https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg" 
+                                    alt="${video.title}" 
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                
+                                <!-- Dark Gradient Overlay -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60 pointer-events-none"></div>
+
+                                <!-- Top Title Bar -->
+                                <div class="absolute top-0 left-0 right-0 p-3 flex items-center justify-between text-white pointer-events-none">
+                                    <span class="text-xs font-bold truncate drop-shadow-md pr-2">${video.title}</span>
+                                    <span class="text-[10px] font-mono bg-black/60 px-2 py-0.5 rounded text-white/90">WEB-R</span>
+                                </div>
+
+                                <!-- Prominent YouTube Red Play Button (Exactly like Snap 1) -->
+                                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                    <div class="w-16 h-11 bg-red-600 group-hover:bg-red-700 rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-200">
+                                        <svg class="w-6 h-6 text-white fill-current ml-0.5" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Play Notice -->
+                                <div class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded-md bg-black/80 text-[10px] font-mono font-bold text-white pointer-events-none flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    <span>Click to Play</span>
+                                </div>
+                            </div>
+
+                            <div class="p-5">
+                                <div class="flex items-center justify-between gap-2 mb-3">
+                                    <span class="inline-block text-[11px] font-mono px-2.5 py-0.5 rounded-full border font-bold ${badgeClass}">
+                                        ${video.categoryBadge}
+                                    </span>
+                                    <span class="text-[11px] font-mono font-bold text-slate-500 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                                        REF: #${video.ref}
+                                    </span>
+                                </div>
+                                <h3 class="text-base font-bold text-charcoal-900 mb-2 leading-snug">${video.title}</h3>
+                                <p class="text-xs text-charcoal-600 leading-relaxed mb-4">${video.description}</p>
+                                
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${video.tags.map(tag => `<span class="text-[10px] font-mono text-slate-500 bg-slate-100 px-2 py-0.5 rounded">#${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Action Buttons: Full Screen Mode, Copy Link, WhatsApp Help -->
+                        <div class="px-5 pb-5 pt-3 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row items-center justify-between gap-2">
+                            <button onclick="copyDirectLink('${video.ref}')" class="w-full sm:w-auto px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-charcoal-800 border border-slate-300 text-xs font-mono font-semibold flex items-center justify-center gap-1.5 transition">
+                                <svg class="w-3.5 h-3.5 text-brandRed-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                                <span>Copy Link</span>
+                            </button>
+
+                            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                                <!-- Dedicated On-Site Full Screen Theater Button -->
+                                <button onclick="openTheaterMode('${video.youtubeId}', '${encodeURIComponent(video.title)}', '${video.ref}', '${encodeURIComponent(video.categoryBadge)}')" class="px-3 py-1.5 rounded-lg bg-charcoal-900 hover:bg-charcoal-800 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-sm" title="Watch in Full Screen on this website">
+                                    <svg class="w-3.5 h-3.5 text-brandRed-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0 0l-5-5m-7 11l-5 5m0 0h4m-4 0v-4m16 4l-5-5m5 5v-4m0 4h-4"></path>
+                                    </svg>
+                                    <span>Full Screen</span>
+                                </button>
+
+                                <a href="https://wa.me/923456069257?text=Hi%20Rizwan%2C%20I%20need%20help%20with%20Web-R%20video%3A%20${encodeURIComponent(video.ref + ' - ' + video.title)}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-brandRed-600 hover:bg-brandRed-700 text-white text-xs font-bold flex items-center gap-1 transition">
+                                    <span>WhatsApp</span>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    videoGrid.appendChild(card);
+                });
+            }
+        }
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            renderVideos();
+        });
+
+        // Category Filter Listener
+        categoryButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryButtons.forEach(b => {
+                    b.classList.remove('bg-brandRed-600', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-white', 'text-charcoal-700', 'border', 'border-slate-200');
+                });
+                btn.classList.remove('bg-white', 'text-charcoal-700', 'border', 'border-slate-200');
+                btn.classList.add('bg-brandRed-600', 'text-white', 'shadow-sm');
+
+                activeCategory = btn.getAttribute('data-cat');
+                renderVideos();
+            });
+        });
+
+        // Initialize Render
+        renderVideos();
+
+        // Check for URL Query Param / Anchor (e.g. ?ref=REF-01 or #REF-01)
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const refParam = urlParams.get('ref') || window.location.hash.replace('#', '');
+            
+            if (refParam) {
+                const targetCard = document.getElementById(refParam);
+                if (targetCard) {
+                    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    targetCard.classList.add('highlight-card');
+                    setTimeout(() => targetCard.classList.remove('highlight-card'), 4000);
+                } else {
+                    searchInput.value = refParam;
+                    searchQuery = refParam;
+                    renderVideos();
+                }
+
+                const autoplayParam = urlParams.get('autoplay');
+                const theaterParam = urlParams.get('theater');
+
+                if (theaterParam) {
+                    const vid = VIDEO_DATABASE.find(v => v.youtubeId === theaterParam || v.ref === refParam);
+                    if (vid) {
+                        openTheaterMode(vid.youtubeId, encodeURIComponent(vid.title), vid.ref, encodeURIComponent(vid.categoryBadge));
+                    }
+                } else if (autoplayParam) {
+                    const vid = VIDEO_DATABASE.find(v => v.ref === refParam);
+                    if (vid) {
+                        setTimeout(() => playVideoInline(vid.ref, vid.youtubeId, encodeURIComponent(vid.title)), 300);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
